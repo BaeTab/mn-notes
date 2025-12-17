@@ -60,7 +60,30 @@ npm install
 
 # 개발 서버 실행
 npm run dev
+
+# 프로덕션 빌드
+npm run build
+
+# Firebase 배포
+npm run deploy
 ```
+
+---
+
+## 📊 Analytics
+
+이 프로젝트는 **Google Analytics 4 (Firebase Analytics)**를 통해 사용자 행동을 추적합니다.
+
+### 추적되는 주요 이벤트
+- 📄 페이지 뷰 (자동)
+- 🐾 반려동물 종류 선택 (강아지/고양이)
+- 🧮 계산 완료 (나이, 체중, BCS 등)
+- ⚖️ BCS 모드 전환 (자동/수동)
+- 🔗 외부 링크 클릭 (다이어트/관절 건강 정보)
+- 🌐 언어 변경
+- 🎯 CTA 버튼 클릭
+
+자세한 내용은 [ANALYTICS.md](./ANALYTICS.md)를 참고하세요.
 
 ---
 
