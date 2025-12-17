@@ -10,7 +10,7 @@ interface PetTabProps {
 
 export default function PetTab({ selected, onSelect }: PetTabProps) {
     return (
-        <div className="flex bg-white p-1 rounded-full shadow-sm mb-6">
+        <div className="flex bg-white p-2 rounded-full shadow-inner border border-orange-100 mb-8 mx-4">
             {(['dog', 'cat'] as const).map((species) => (
                 <button
                     key={species}
@@ -21,7 +21,7 @@ export default function PetTab({ selected, onSelect }: PetTabProps) {
                     {selected === species && (
                         <motion.div
                             layoutId="activeTab"
-                            className={`absolute inset-0 rounded-full ${species === 'dog' ? 'bg-orange-400' : 'bg-blue-400'
+                            className={`absolute inset-0 rounded-full shadow-md ${species === 'dog' ? 'bg-[#FFB978]' : 'bg-[#8FD3FF]'
                                 }`}
                             initial={false}
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}

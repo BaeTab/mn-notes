@@ -1,61 +1,80 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Calculator, Heart, Info } from 'lucide-react';
+import { ArrowRight, Calculator, Globe } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 export default function LandingPage() {
     const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
+
+    const toggleLang = () => {
+        i18n.changeLanguage(i18n.language === 'ko' ? 'en' : 'ko');
+    };
 
     return (
         <div className="max-w-3xl mx-auto space-y-12">
+            <Helmet>
+                <title>{t('meta.title')}</title>
+                <meta name="description" content={t('meta.description')} />
+                <html lang={i18n.language} />
+            </Helmet>
+
+            <div className="flex justify-end px-4">
+                <button onClick={toggleLang} className="flex items-center gap-1 text-sm font-medium text-stone-500 hover:text-orange-500 transition-colors bg-white px-3 py-1.5 rounded-full shadow-sm border border-stone-100">
+                    <Globe size={16} />
+                    <span>{i18n.language === 'ko' ? 'English' : '한국어'}</span>
+                </button>
+            </div>
             {/* Hero Section */}
-            <section className="text-center space-y-6 py-12">
-                <h1 className="text-4xl md:text-5xl font-extrabold text-stone-800 leading-tight">
-                    반려동물 건강 관리,<br />
-                    <span className="text-orange-500">멍냥수첩</span>으로 시작하세요
+            <section className="text-center space-y-6 py-6 md:py-12">
+                <div className="inline-block animate-bounce mb-2">
+                    <span className="text-4xl">🐾</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-extrabold text-stone-800 leading-tight whitespace-pre-wrap">
+                    <Trans i18nKey="landing.hero_title">
+                        Pet Health Care, Start with <span className="text-orange-500">MungNyang Note</span>
+                    </Trans>
                 </h1>
-                <p className="text-lg text-stone-600 max-w-lg mx-auto leading-relaxed">
-                    우리 아이의 사람 나이 환산부터, 비만도 측정, 하루 권장 칼로리 계산까지.
-                    수의학적 기준에 맞춘 정확한 정보를 제공합니다.
+                <p className="text-xl text-stone-600 max-w-lg mx-auto leading-relaxed opacity-90">
+                    {t('landing.hero_desc')}
                 </p>
                 <button
                     onClick={() => navigate('/calculator')}
-                    className="inline-flex items-center gap-2 bg-stone-900 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-stone-700 transition-all hover:scale-105 shadow-xl"
+                    className="inline-flex items-center gap-3 bg-orange-400 text-white px-8 py-4 rounded-full text-xl hover:bg-orange-500 transition-all hover:scale-105 shadow-[0_4px_14px_0_rgba(251,146,60,0.39)] hover:shadow-[0_6px_20px_rgba(251,146,60,0.23)]"
                 >
-                    <Calculator size={20} />
-                    건강 진단 시작하기
-                    <ArrowRight size={20} />
+                    <Calculator size={24} />
+                    {t('landing.cta_start')}
+                    <ArrowRight size={24} />
                 </button>
             </section>
 
             {/* Feature Grids (Rich Content for AdSense) */}
-            <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100">
-                    <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-4">
-                        <Info size={24} />
+            <div className="grid md:grid-cols-3 gap-6 px-4">
+                <div className="bg-white p-6 rounded-[2rem] shadow-lg border-2 border-orange-50 hover:border-orange-200 transition-colors">
+                    <div className="w-14 h-14 bg-orange-100 text-orange-500 rounded-2xl flex items-center justify-center mb-4 text-2xl shadow-sm">
+                        🎂
                     </div>
-                    <h3 className="text-xl font-bold text-stone-800 mb-2">나이 계산기</h3>
+                    <h3 className="text-xl font-bold text-stone-800 mb-2">{t('landing.features.age_title')}</h3>
                     <p className="text-stone-500 text-sm leading-relaxed">
-                        단순히 7을 곱하는 것이 아닙니다. 미국 수의사협회(AVMA) 가이드라인을 기반으로,
-                        소형견, 대형견, 고양이의 생애 주기에 맞춘 정확한 사람 나이를 계산해드립니다.
+                        {t('landing.features.age_desc')}
                     </p>
                 </div>
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100">
-                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4">
-                        <Heart size={24} />
+                <div className="bg-white p-6 rounded-[2rem] shadow-lg border-2 border-blue-50 hover:border-blue-200 transition-colors">
+                    <div className="w-14 h-14 bg-blue-100 text-blue-500 rounded-2xl flex items-center justify-center mb-4 text-2xl shadow-sm">
+                        ⚖️
                     </div>
-                    <h3 className="text-xl font-bold text-stone-800 mb-2">비만도(BCS) 분석</h3>
+                    <h3 className="text-xl font-bold text-stone-800 mb-2">{t('landing.features.bcs_title')}</h3>
                     <p className="text-stone-500 text-sm leading-relaxed">
-                        반려동물의 비만은 만병의 근원입니다. 세계소동물수의사회(WSAVA)의 9단계 BCS 차트를
-                        기반으로 우리 아이의 체형을 분석하고 적정 체중을 제안합니다.
+                        {t('landing.features.bcs_desc')}
                     </p>
                 </div>
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100">
-                    <div className="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-4">
-                        <Calculator size={24} />
+                <div className="bg-white p-6 rounded-[2rem] shadow-lg border-2 border-green-50 hover:border-green-200 transition-colors">
+                    <div className="w-14 h-14 bg-green-100 text-green-500 rounded-2xl flex items-center justify-center mb-4 text-2xl shadow-sm">
+                        🥗
                     </div>
-                    <h3 className="text-xl font-bold text-stone-800 mb-2">칼로리 처방</h3>
+                    <h3 className="text-xl font-bold text-stone-800 mb-2">{t('landing.features.calorie_title')}</h3>
                     <p className="text-stone-500 text-sm leading-relaxed">
-                        RER(휴식기 에너지 요구량) 공식을 사용하여, 활동량과 중성화 여부,
-                        다이어트 필요 여부에 따른 정확한 하루 권장 칼로리와 급여량을 알려드립니다.
+                        {t('landing.features.calorie_desc')}
                     </p>
                 </div>
             </div>

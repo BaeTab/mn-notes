@@ -8,9 +8,9 @@ function App() {
   return (
     <BrowserRouter>
       <RouteTracker />
-      <div className="min-h-dvh bg-stone-50 font-sans text-stone-900 flex flex-col">
+      <div className="min-h-dvh bg-background font-sans text-stone-800 flex flex-col transition-colors selection:bg-orange-200">
         {/* Navigation */}
-        <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-stone-100">
+        <nav className="bg-white/70 backdrop-blur-md sticky top-0 z-50 border-b border-orange-100 shadow-sm">
           <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2 font-extrabold text-xl text-stone-800 hover:opacity-80 transition-opacity">
               <PawPrint className="text-orange-500" />
