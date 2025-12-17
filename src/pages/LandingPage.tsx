@@ -3,6 +3,7 @@ import { ArrowRight, Calculator, Globe } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import { trackLanguageChange, trackCTAClick } from '../utils/analytics';
+import AdFit from '../components/AdFit';
 
 export default function LandingPage() {
     const navigate = useNavigate();
@@ -110,6 +111,15 @@ export default function LandingPage() {
                     멍냥수첩의 계산기는 RER 공식에 활동 계수(DER)를 적용하여, 우리 아이에게 딱 맞는 맞춤형 급여량을 제시합니다.
                 </p>
             </article>
+
+            {/* Kakao AdFit 광고 */}
+            <div className="flex justify-center py-8">
+                <AdFit
+                    unit="DAN-syt3g8tXIocYLBy1"
+                    width={300}
+                    height={250}
+                />
+            </div>
 
             <div className="p-4 text-center text-xs text-stone-400">
                 <p>본 서비스에서 제공하는 결과는 수의학적 참고 자료이며, 전문적인 진단을 대신할 수 없습니다.</p>

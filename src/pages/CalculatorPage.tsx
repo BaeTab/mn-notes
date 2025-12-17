@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PetTab from '../components/PetTab';
 import BCSSelector from '../components/BCSSelector';
 import ResultCard from '../components/ResultCard';
+import AdFit from '../components/AdFit';
 import { calculateHumanAge, calculateRER, calculateCalories, estimateBCS, type Species, type DogSize } from '../utils/petLogic';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
@@ -192,14 +193,26 @@ function CalculatorPage() {
                 </div>
 
                 {currentAge > 0 && currentWeight > 0 && (
-                    <ResultCard
-                        age={currentAge}
-                        humanAge={humanAge}
-                        dailyKcal={dailyKcal}
-                        cupAmount={cupAmount}
-                        bcs={bcs}
-                        species={species}
-                    />
+                    <>
+                        <ResultCard
+                            age={currentAge}
+                            humanAge={humanAge}
+                            dailyKcal={dailyKcal}
+                            cupAmount={cupAmount}
+                            bcs={bcs}
+                            species={species}
+                        />
+
+                        {/* Kakao AdFit 광고 */}
+                        <div className="flex justify-center">
+                            <AdFit
+                                unit="DAN-syt3g8tXIocYLBy1"
+                                width={300}
+                                height={250}
+                                className="mt-6"
+                            />
+                        </div>
+                    </>
                 )}
             </div>
         </div>
