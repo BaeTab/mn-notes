@@ -2,13 +2,21 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Calculator, Globe } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import { trackLanguageChange, trackCTAClick } from '../utils/analytics';
 
 export default function LandingPage() {
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
 
     const toggleLang = () => {
-        i18n.changeLanguage(i18n.language === 'ko' ? 'en' : 'ko');
+        const newLang = i18n.language === 'ko' ? 'en' : 'ko';
+        i18n.changeLanguage(newLang);
+        trackLanguageChange(newLang);
+    };
+
+    const handleStartClick = () => {
+        trackCTAClick('start_calculator');
+        navigate('/calculator');
     };
 
     return (
@@ -39,7 +47,7 @@ export default function LandingPage() {
                     {t('landing.hero_desc')}
                 </p>
                 <button
-                    onClick={() => navigate('/calculator')}
+                    onClick={handleStartClick}
                     className="inline-flex items-center gap-3 bg-orange-400 text-white px-8 py-4 rounded-full text-xl hover:bg-orange-500 transition-all hover:scale-105 shadow-[0_4px_14px_0_rgba(251,146,60,0.39)] hover:shadow-[0_6px_20px_rgba(251,146,60,0.23)]"
                 >
                     <Calculator size={24} />

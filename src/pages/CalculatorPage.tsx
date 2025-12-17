@@ -5,6 +5,7 @@ import ResultCard from '../components/ResultCard';
 import { calculateHumanAge, calculateRER, calculateCalories, estimateBCS, type Species, type DogSize } from '../utils/petLogic';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import { trackCalculationComplete, trackBCSModeToggle, trackNeuteredToggle, trackDogSizeSelection } from '../utils/analytics';
 
 function CalculatorPage() {
     const { t } = useTranslation();
@@ -31,6 +32,42 @@ function CalculatorPage() {
     const humanAge = calculateHumanAge(species, currentAge, dogSize);
     const rer = calculateRER(currentWeight);
     const { dailyKcal, cupAmount } = calculateCalories(rer, isNeutered, bcs);
+
+    // 계산 완료 추적
+    useEffect(() => {
+        if (currentAge > 0 && currentWeight > 0) {
+            trackCalculationComplete({
+                species,
+                age: currentAge,
+                weight: currentWeight,
+                bcs,
+                isNeutered,
+                dogSize: species === 'dog' ? dogSize : undefined,
+            });
+        }
+    }, [currentAge, currentWeight, species, bcs, isNeutered, dogSize]);
+
+    const handleNeuteredToggle = () => {
+        const newValue = !isNeutered;
+        setIsNeutered(newValue);
+        trackNeuteredToggle(newValue);
+    };
+
+    const handleDogSizeChange = (size: DogSize) => {
+        setDogSize(size);
+        trackDogSizeSelection(size);
+    };
+
+    const handleBCSModeToggle = () => {
+        const newMode = !isAutoBcs;
+        setIsAutoBcs(newMode);
+        if (newMode) {
+            trackBCSModeToggle('auto');
+            setIdealWeight('');
+        } else {
+            trackBCSModeToggle('manual');
+        }
+    };
 
     return (
         <div className="flex justify-center w-full">
@@ -66,7 +103,7 @@ function CalculatorPage() {
                                 {(['small', 'medium', 'large'] as const).map((size) => (
                                     <button
                                         key={size}
-                                        onClick={() => setDogSize(size)}
+                                        onClick={() => handleDogSizeChange(size)}
                                         className={`p-3 rounded-xl text-sm font-medium transition-colors ${dogSize === size
                                             ? 'bg-orange-100 text-orange-600 border-2 border-orange-200'
                                             : 'bg-stone-50 text-stone-500 border-2 border-transparent hover:bg-stone-100'
@@ -97,7 +134,7 @@ function CalculatorPage() {
                     <div className="flex items-center justify-between py-2">
                         <label className="text-stone-700 font-bold">{t('calc.neutered_label')}</label>
                         <button
-                            onClick={() => setIsNeutered(!isNeutered)}
+                            onClick={handleNeuteredToggle}
                             className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors ${isNeutered ? 'bg-orange-400' : 'bg-stone-300'
                                 }`}
                         >
@@ -114,10 +151,7 @@ function CalculatorPage() {
                             <div className="flex items-center gap-2">
                                 <span className="text-xs text-stone-400">{isAutoBcs ? t('calc.target_weight_label') : t('calc.bcs_manual_guide')}</span>
                                 <button
-                                    onClick={() => {
-                                        setIsAutoBcs(!isAutoBcs);
-                                        if (!isAutoBcs) setIdealWeight('');
-                                    }}
+                                    onClick={handleBCSModeToggle}
                                     className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors ${isAutoBcs ? 'bg-blue-400' : 'bg-stone-300'}`}
                                 >
                                     <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${isAutoBcs ? 'translate-x-6' : 'translate-x-0'}`} />

@@ -2,6 +2,7 @@ import { ExternalLink, Heart } from "lucide-react";
 import { LINKS } from "../constants/links";
 import type { Species } from "../utils/petLogic";
 import { useTranslation, Trans } from "react-i18next";
+import { trackExternalLinkClick } from "../utils/analytics";
 
 interface ResultCardProps {
     age: number;
@@ -48,6 +49,7 @@ export default function ResultCard({ age, humanAge, dailyKcal, cupAmount, bcs, s
                         href={dietLink}
                         target="_blank"
                         rel="noreferrer"
+                        onClick={() => trackExternalLinkClick('diet', species)}
                         className="flex items-center justify-between w-full p-4 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-colors"
                     >
                         <span className="font-bold text-sm">{t('result.diet_btn')}</span>
@@ -60,6 +62,7 @@ export default function ResultCard({ age, humanAge, dailyKcal, cupAmount, bcs, s
                         href={jointLink}
                         target="_blank"
                         rel="noreferrer"
+                        onClick={() => trackExternalLinkClick('joint', species)}
                         className="flex items-center justify-between w-full p-4 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors"
                     >
                         <span className="font-bold text-sm">{t('result.joint_btn')}</span>
