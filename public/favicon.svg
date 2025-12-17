@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Main Pad (Heart/Round shape) - Orange -->
+  <path d="M50 85 C25 85 20 60 35 50 C40 46 45 55 50 55 C55 55 60 46 65 50 C80 60 75 85 50 85 Z" fill="#FB923C"/>
+  
+  <!-- Toes - Blue -->
+  <circle cx="25" cy="40" r="10" fill="#60A5FA"/>
+  <circle cx="42" cy="25" r="10" fill="#60A5FA"/>
+  <circle cx="68" cy="25" r="10" fill="#60A5FA"/>
+  <circle cx="85" cy="40" r="10" fill="#60A5FA"/>
+</svg>

@@ -1,0 +1,65 @@
+{
+    "translation": {
+        "meta": {
+            "title": "MungNyang Note - Pet Age, BCS & Calorie Calculator",
+            "description": "Calculate your pet's human age, obesity level (BCS), and daily calories. Professional veterinary standard tools for dogs and cats."
+        },
+        "nav": {
+            "brand": "MungNyang Note"
+        },
+        "landing": {
+            "hero_title": "Pet Health Care,\nStart with <1>MungNyang Note</1>",
+            "hero_desc": "From human age conversion to obesity measurement and calorie calculation. We provide accurate information based on veterinary standards.",
+            "cta_start": "Start Diagnosis",
+            "features": {
+                "age_title": "Age Calculator",
+                "age_desc": "It's not just multiplying by 7. Based on AVMA guidelines, we calculate accurate human age for small dogs, large dogs, and cats.",
+                "bcs_title": "BCS Analysis",
+                "bcs_desc": "Based on WSAVA's 9-point BCS chart, we analyze your pet's body type and suggest ideal weight.",
+                "calorie_title": "Calorie Prescription",
+                "calorie_desc": "Using the RER formula, we provide customized daily calorie intake based on activity level and neutering status."
+            },
+            "article": {
+                "title": "Why is Pet Obesity Management Important?",
+                "p1": "Studies show that pets at an ideal weight live 2 years longer on average. Obesity causes arthritis, diabetes, and heart disease.",
+                "bcs_title": "What is BCS (Body Condition Score)?",
+                "bcs_p": "BCS is a body condition score from 1 (thin) to 9 (obese). Steps 4-5 are ideal.",
+                "food_title": "Why Precise Calculation Matters",
+                "food_p": "Feeding guides on packages are averages. Indoor pets often need less."
+            },
+            "disclaimer": "This service provides veterinary reference data but does replace professional diagnosis."
+        },
+        "calc": {
+            "title": "Health Calculator",
+            "subtitle": "Age, Obesity, Calories all at once",
+            "age_label": "Age (years)",
+            "size_label": "Size",
+            "weight_label": "Weight (kg)",
+            "neutered_label": "Neutered",
+            "auto_bcs_label": "Auto BCS Calc",
+            "target_weight_label": "Target Weight (kg)",
+            "target_weight_placeholder": "e.g. Healthy weight",
+            "bcs_result": "Estimated BCS",
+            "bcs_manual_guide": "Select the closest body type from the image above.",
+            "sizes": {
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large"
+            },
+            "bcs_levels": {
+                "under": "Underweight",
+                "ideal": "Ideal",
+                "over": "Overweight"
+            }
+        },
+        "result": {
+            "intro": "My Lovely Pet",
+            "human_age": "Human Age <1>{{age}} yrs</1>",
+            "daily_kcal": "Daily Calories",
+            "cup_unit": "Approx {{count}} cups",
+            "cup_desc": "Paper Cup Base",
+            "diet_btn": "Go to Diet Food",
+            "joint_btn": "Joint Supplement Rec"
+        }
+    }
+}
