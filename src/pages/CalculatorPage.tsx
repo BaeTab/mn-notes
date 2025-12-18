@@ -90,9 +90,20 @@ function CalculatorPage() {
                         <label className="text-stone-700 font-bold block">{t('calc.age_label')}</label>
                         <input
                             type="number"
+                            inputMode="numeric"
                             value={age}
                             placeholder="3"
-                            onChange={(e) => setAge(e.target.value === '' ? '' : Number(e.target.value))}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === '') {
+                                    setAge('');
+                                    return;
+                                }
+                                const num = parseFloat(val);
+                                if (!isNaN(num)) {
+                                    setAge(num);
+                                }
+                            }}
                             className="w-full bg-stone-100 rounded-xl p-4 text-lg font-medium focus:outline-none focus:ring-2 focus:ring-orange-200"
                         />
                     </div>
@@ -124,10 +135,21 @@ function CalculatorPage() {
                         <label className="text-stone-700 font-bold block">{t('calc.weight_label')}</label>
                         <input
                             type="number"
+                            inputMode="decimal"
                             value={weight}
                             placeholder="5.2"
                             step="0.1"
-                            onChange={(e) => setWeight(e.target.value === '' ? '' : Number(e.target.value))}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === '') {
+                                    setWeight('');
+                                    return;
+                                }
+                                const num = parseFloat(val);
+                                if (!isNaN(num)) {
+                                    setWeight(num);
+                                }
+                            }}
                             className="w-full bg-stone-100 rounded-xl p-4 text-lg font-medium focus:outline-none focus:ring-2 focus:ring-orange-200"
                         />
                     </div>

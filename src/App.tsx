@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import CalculatorPage from './pages/CalculatorPage';
 import LandingPage from './pages/LandingPage';
+import BlogListPage from './pages/BlogListPage';
+import BlogPostPage from './pages/BlogPostPage';
 import { PawPrint } from 'lucide-react';
 import RouteTracker from './components/RouteTracker';
 
@@ -16,6 +18,9 @@ function App() {
               <PawPrint className="text-orange-500" />
               <span>멍냥수첩</span>
             </Link>
+            <Link to="/blog" className="text-stone-600 font-bold hover:text-orange-500 transition-colors">
+              블로그
+            </Link>
           </div>
         </nav>
 
@@ -24,6 +29,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/calculator" element={<CalculatorPage />} />
+            <Route path="/blog" element={<BlogListPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
           </Routes>
         </main>
       </div>

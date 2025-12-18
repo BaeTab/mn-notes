@@ -30,7 +30,11 @@ function AdFit({ unit, width, height, className = '' }: AdFitProps) {
         } else {
             // 스크립트가 이미 있으면 광고를 다시 로드
             if (window.adfit) {
-                window.adfit.refresh();
+                try {
+                    window.adfit.refresh();
+                } catch (e) {
+                    console.debug('AdFit refresh failed:', e);
+                }
             }
         }
 
