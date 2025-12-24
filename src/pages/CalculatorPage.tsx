@@ -5,7 +5,7 @@ import ResultCard from '../components/ResultCard';
 import AdFit from '../components/AdFit';
 import { calculateHumanAge, calculateRER, calculateCalories, estimateBCS, type Species, type DogSize } from '../utils/petLogic';
 import { useTranslation } from 'react-i18next';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { trackCalculationComplete, trackBCSModeToggle, trackNeuteredToggle, trackDogSizeSelection } from '../utils/analytics';
 
 function CalculatorPage() {
@@ -72,10 +72,24 @@ function CalculatorPage() {
 
     return (
         <div className="flex justify-center w-full">
-            <Helmet>
-                <title>{t('meta.title')} - {t('calc.title')}</title>
-                <meta name="description" content={t('meta.description')} />
-            </Helmet>
+            <SEO
+                title={`${t('meta.title')} - ${t('calc.title')}`}
+                description={t('meta.description')}
+                url="/calculator"
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "WebApplication",
+                    "name": "멍냥수첩 계산기",
+                    "applicationCategory": "HealthApplication",
+                    "operatingSystem": "All",
+                    "url": "https://mn-notes.web.app/calculator",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "KRW"
+                    }
+                }}
+            />
 
             <div className="w-full max-w-md space-y-8">
                 <header className="text-center space-y-2">

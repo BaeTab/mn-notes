@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 import { Calendar, Clock, ChevronRight, User } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 
 export default function BlogListPage() {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <Helmet>
-                <title>멍냥수첩 블로그 - 반려동물 건강 상식</title>
-                <meta name="description" content="강아지, 고양이 건강 관리, 다이어트, 나이 계산 등 유용한 정보를 확인하세요." />
-            </Helmet>
+            <SEO
+                title="멍냥수첩 블로그 - 반려동물 건강 상식"
+                description="강아지, 고양이 건강 관리, 다이어트, 나이 계산 등 유용한 정보를 확인하세요."
+                url="/blog"
+            />
 
             <header className="text-center space-y-4 py-8">
                 <span className="text-orange-500 font-bold tracking-wider text-sm uppercase">Blog</span>

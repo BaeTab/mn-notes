@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 import { Calendar, Clock, ChevronLeft, User, Share2 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import ReactMarkdown from 'react-markdown';
 import AdFit from '../components/AdFit';
 
@@ -15,10 +15,29 @@ export default function BlogPostPage() {
 
     return (
         <article className="max-w-2xl mx-auto space-y-8 animate-in fade-in duration-700">
-            <Helmet>
-                <title>{post.title} - 멍냥수첩</title>
-                <meta name="description" content={post.excerpt} />
-            </Helmet>
+            <SEO
+                title={`${post.title} - 멍냥수첩`}
+                description={post.excerpt}
+                url={`/blog/${id}`}
+                type="article"
+                publishedTime={post.date}
+                author="멍냥박사"
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": post.title,
+                    "description": post.excerpt,
+                    "author": {
+                        "@type": "Person",
+                        "name": "멍냥박사"
+                    },
+                    "datePublished": post.date,
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": `https://mn-notes.web.app/blog/${id}`
+                    }
+                }}
+            />
 
             {/* Navigation Back */}
             <Link

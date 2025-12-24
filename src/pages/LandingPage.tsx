@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Calculator, Globe } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { trackLanguageChange, trackCTAClick } from '../utils/analytics';
 import AdFit from '../components/AdFit';
 
@@ -22,11 +22,22 @@ export default function LandingPage() {
 
     return (
         <div className="max-w-3xl mx-auto space-y-12">
-            <Helmet>
-                <title>{t('meta.title')}</title>
-                <meta name="description" content={t('meta.description')} />
-                <html lang={i18n.language} />
-            </Helmet>
+            <SEO
+                title={t('meta.title')}
+                description={t('meta.description')}
+                url="/"
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "멍냥수첩",
+                    "url": "https://mn-notes.web.app/",
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "https://mn-notes.web.app/search?q={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                    }
+                }}
+            />
 
             <div className="flex justify-end px-4">
                 <button onClick={toggleLang} className="flex items-center gap-1 text-sm font-medium text-stone-500 hover:text-orange-500 transition-colors bg-white px-3 py-1.5 rounded-full shadow-sm border border-stone-100">
